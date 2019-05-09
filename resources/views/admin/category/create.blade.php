@@ -71,11 +71,9 @@
                                     </div>
                                     <div class="form-title">
                                         <div class="field">
-                                            <label for="pay"><span class="icon-map-pin"></span> قیمت فی</label>
-                                            <input type="text" id="pay" name="pay" placeholder="قیمت فی"
-                                                   onkeypress="return onlynumber(event);"
-                                                   onkeyup="javascript:this.value=Number_Three_digit(this.value);"
-                                                   value="@if(isset($editValue)){{number_format($editValue->pay)}}@endif"
+                                            <label for="link"><span class="icon-map-pin"></span> لینک </label>
+                                            <input type="text" id="link" name="link" placeholder="لینک"
+                                                   value="{{old('link')}}@if(isset($editValue)){{$editValue->link}}@endif"
                                                    class="title lg">
                                         </div>
                                     </div>

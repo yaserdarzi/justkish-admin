@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('auth/sms', 'Auth\AuthController@getSms')->name('sms');
+Route::post('auth/sms', 'Auth\AuthController@postSms');
+Route::post('auth/verify', 'Auth\AuthController@postVerify');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+
+Route::group(['middleware' => 'DashboardAuthenticate', 'namespace' => 'Admin'], function () {
+
+    //dashboard
+    Route::get('/', 'DashboardController@welCome');
+
+    // User roles
+    Route::resource('user/roles', 'RolesController');
+    Route::resource('user/permissions', 'PermissionsController');
+
+    //Category
+    Route::resource('category', 'CategoryController');
+
 });

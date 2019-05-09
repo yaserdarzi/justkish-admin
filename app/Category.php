@@ -10,6 +10,9 @@ class Category extends Model
 {
     use SoftDeletes;
     protected $table = Constants::CATEGORY_DB;
-    protected $fillable = ['title', 'icon', 'desc', 'pay', 'sort'];
+    protected $fillable = [
+        'type_app_id', 'title', 'icon', 'desc',
+        'sort', 'link'
+    ];
     protected $dates = ['deleted_at'];
 }

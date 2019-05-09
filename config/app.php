@@ -53,6 +53,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'cdn_image_url' => env('CDN_IMAGE_URL', 'http://api.vishar.com'),
+    'cdn_image_storage' => env('CDN_IMAGE_URL_STORAGE', '/home/projects/vishar-script/public/files/'),
 
     'asset_url' => env('ASSET_URL', null),
 

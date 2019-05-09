@@ -47,7 +47,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'upload' => [
+            'driver' => 'local',
+            'root' => config('app.cdn_image_storage')
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -1,14 +1,14 @@
 @extends('layouts.pages')
 @section('title')
     @if(isset($editValue))
-        {{'ویرایش گروه بندی'}}
+        {{'ویرایش ویژگی'}}
     @else
-        {{'افزودن گروه بندی'}}
+        {{'افزودن ویژگی'}}
     @endif
 @endsection
 @section('content')
     <!-- Page Header -->
-    <form method="POST" action="{{url('category')}}@if(isset($editValue))/{{$editValue->id}}@endif"
+    <form method="POST" action="{{url('features')}}@if(isset($editValue))/{{$editValue->id}}@endif"
           files="true" enctype="multipart/form-data">
         {!! csrf_field() !!}
         @if(isset($editValue))
@@ -18,9 +18,9 @@
             <div class="content">
                 <div class="title">
                     @if(isset($editValue))
-                        <h1> ویرایش گروه بندی </h1>
+                        <h1> ویرایش ویژگی </h1>
                     @else
-                        <h1> افزودن گروه بندی </h1>
+                        <h1> افزودن ویژگی </h1>
                     @endif
                 </div>
                 <div class="functions">
@@ -46,7 +46,7 @@
                         <a href="#" class="icon-close alert-close "></a>
                     </div>
                 @endif
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <!-- Form General -->
                     <section class="panel form-general">
                         <article>
@@ -54,7 +54,8 @@
                                 <li id="tab-lang-fa">
                                     <div class="form-title">
                                         <div class="field">
-                                            <label for="group_features_id"><span class="icon-map-pin"></span>گروه ویژگی ها</label>
+                                            <label for="group_features_id"><span class="icon-map-pin"></span>گروه ویژگی
+                                                ها</label>
                                             <div class="select">
                                                 <select id="group_features_id" name="group_features_id">
                                                     @if(isset($groupFeaturesInfo))
@@ -68,15 +69,6 @@
                                     </div>
                                     <div class="form-title">
                                         <div class="field">
-                                            <label for="sort"><span class="icon-map-pin"></span> ترتیب نمایش</label>
-                                            <input type="text" id="sort" name="sort" placeholder="ترتیب نمایش"
-                                                   onkeypress="return onlynumber(event);"
-                                                   value="{{old('sort')}}@if(isset($editValue)){{$editValue->sort}}@endif"
-                                                   class="title lg">
-                                        </div>
-                                    </div>
-                                    <div class="form-title">
-                                        <div class="field">
                                             <label for="title"><span class="icon-map-pin"></span> عنوان</label>
                                             <input type="text" id="title" name="title" placeholder="عنوان"
                                                    value="{{old('title')}}@if(isset($editValue)){{$editValue->title}}@endif"
@@ -85,43 +77,14 @@
                                     </div>
                                     <div class="form-title">
                                         <div class="field">
-                                            <label for="link"><span class="icon-map-pin"></span> لینک </label>
-                                            <input type="text" id="link" name="link" placeholder="لینک"
-                                                   value="{{old('link')}}@if(isset($editValue)){{$editValue->link}}@endif"
-                                                   class="title lg">
-                                        </div>
-                                    </div>
-                                    <div class="form-title">
-                                        <div class="field">
-                                            <label for="desc"><span class="icon-map-pin"></span> توضیحات</label>
-                                            <textarea type="text" id="desc" name="desc"
-                                                      placeholder="توضیحات" rows="5"
-                                                      class="title lg">{{old('desc')}}@if(isset($editValue)){{$editValue->desc}}@endif</textarea>
+                                            <label for="description"><span class="icon-map-pin"></span> توضیحات</label>
+                                            <textarea type="text" id="description" name="description"
+                                                      placeholder="توضیحات"
+                                                      class="title lg">{{old('description')}}@if(isset($editValue)){{$editValue->description}}@endif</textarea>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                        </article>
-                    </section>
-                </div>
-                <div class="col-sm-4">
-                    <!-- Image Upload -->
-                    <section class="panel">
-                        <header>
-                            <div class="title"><span class="icon-image"></span> آپلود تصویر</div>
-                            <div class="functions">
-                                <a class="panel-toggle" href="#"></a>
-                            </div>
-                        </header>
-                        <article>
-                            <div class="select-file image"
-                                 @if(isset($editValue)) style="background-image: url('{{asset('files/category/'.$editValue->icon)}}');"@endif>
-                                <div class="field"><label for="image-upload">
-                                        <div class="icon-upload"></div>
-                                        <span>انتخاب فایل</span> </label> <input type="file" name="icon"
-                                                                                 id="image-upload">
-                                </div>
-                            </div>
                         </article>
                     </section>
                 </div>

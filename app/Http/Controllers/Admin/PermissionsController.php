@@ -53,12 +53,12 @@ class PermissionsController extends Controller
     {
         $this->help->checkPermission(Auth::user()->id, "roles-manage");
         if ($request->route_name == null)
-            return redirect('dashboard/user/categories/create')->withInput()->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
+            return redirect('user/categories/create')->withInput()->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
         if (Permission::where('route_name', $request->route_name)->first())
-            return redirect('dashboard/user/permissions/create')->withInput()->withErrors(['کاربر گرامی ،عنوان تکراری می باشد.']);
+            return redirect('user/permissions/create')->withInput()->withErrors(['کاربر گرامی ،عنوان تکراری می باشد.']);
 
         Permission::create(['route_name' => $request->route_name, 'description' => $request->description, 'updated_at' => strtotime(date('Y-m-d H:i:s')), 'created_at' => strtotime(date('Y-m-d H:i:s'))]);
-        return redirect('dashboard/user/permissions/create')->with('success', 'کاربر گرامی ، اطلاعات با موفقیت ثبت شد.');
+        return redirect('user/permissions/create')->with('success', 'کاربر گرامی ، اطلاعات با موفقیت ثبت شد.');
     }
 
     /**
@@ -86,14 +86,14 @@ class PermissionsController extends Controller
         $this->help->checkPermission(Auth::user()->id, "roles-manage");
         $data['editValue'] = Permission::where('id', $id)->first();
         if (!$data['editValue'])
-            return redirect('dashboard/user/permissions');
+            return redirect('user/permissions');
         if ($request->route_name == null)
             return view('admin.roles.permissions.create', $data)->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
         if (Permission::where('route_name', $request->route_name)->where('id', '!=', $id)->first())
             return view('admin.roles.permissions.create', $data)->withErrors(['کاربر گرامی ،عنوان تکراری می باشد.']);
         Permission::where('id', $id)->update(['route_name' => $request->route_name, 'description' => $request->description, 'updated_at' => strtotime(date('Y-m-d H:i:s'))]);
 
-        return redirect('dashboard/user/permissions');
+        return redirect('user/permissions');
     }
 
     /**

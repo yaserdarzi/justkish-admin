@@ -27,7 +27,16 @@ Route::group(['middleware' => 'DashboardAuthenticate', 'namespace' => 'Admin'], 
     Route::resource('user/roles', 'RolesController');
     Route::resource('user/permissions', 'PermissionsController');
 
+    //group features Routs
+    Route::post('group_features/getFeatures', 'GroupFeaturesController@getFeatures');
+    Route::resource('group_features', 'GroupFeaturesController');
+
+    //features Routs
+    Route::resource('features/{features_id}/answers', 'FeaturesQuestionsAnswersController');
+    Route::resource('features', 'FeaturesController');
+
     //Category
     Route::resource('category', 'CategoryController');
+
 
 });

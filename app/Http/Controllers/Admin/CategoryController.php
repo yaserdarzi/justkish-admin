@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\GroupFeatures;
 use App\Http\Controllers\Controller;
 use App\Inside\Constants;
 use App\Inside\Helpers;
@@ -39,7 +40,8 @@ class CategoryController extends Controller
     public function create()
     {
         $this->help->checkPermission(Auth::user()->id, "category-manage");
-        return view('admin.category.create');
+        $data['groupFeaturesInfo'] = GroupFeatures::all();
+        return view('admin.category.create', $data);
     }
 
     /**
@@ -66,6 +68,7 @@ class CategoryController extends Controller
             \Storage::disk('upload')->put('/category/' . $icon, \File::get($request->file('icon')->getRealPath()));
         Category::create([
             'type_app_id' => Auth::user()->type_app_id,
+            'group_features_id' => $request->input('group_features_id'),
             'title' => $request->input('title'),
             'icon' => $icon,
             'desc' => $request->input('desc'),
@@ -98,6 +101,7 @@ class CategoryController extends Controller
         $data['editValue'] = Category::where('id', $id)->first();
         if (!$data['editValue'])
             return redirect('category');
+        $data['groupFeaturesInfo'] = GroupFeatures::all();
         return view('admin.category.create', $data);
     }
 
@@ -114,6 +118,7 @@ class CategoryController extends Controller
         $data['editValue'] = Category::where('id', $id)->first();
         if (!$data['editValue'])
             return redirect('category');
+        $data['groupFeaturesInfo'] = GroupFeatures::all();
         if ($request->input('title') == null)
             return view('category/create', $data)->withInput()->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
         if ($request->input('sort') == null)
@@ -127,6 +132,7 @@ class CategoryController extends Controller
                 \Storage::disk('upload')->put('/category/' . $icon, \File::get($request->file('icon')->getRealPath()));
         }
         Category::where('id', $id)->update([
+            'group_features_id' => $request->input('group_features_id'),
             'title' => $request->input('title'),
             'icon' => $icon,
             'desc' => $request->input('desc'),

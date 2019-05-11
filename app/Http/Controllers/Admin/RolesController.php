@@ -68,16 +68,16 @@ class RolesController extends Controller
     {
         $this->help->checkPermission(Auth::user()->id, "roles-manage");
         if ($request->role_name == null)
-            return redirect('dashboard/user/roles/create')->withInput()->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
+            return redirect('user/roles/create')->withInput()->withErrors(['کاربر گرامی ، وارد کردن عنوان اجباری می باشد.']);
         if (Role::where('role_name', $request->role_name)->first())
-            return redirect('dashboard/user/roles/create')->withInput()->withErrors(['کاربر گرامی ،عنوان تکراری می باشد.']);
+            return redirect('user/roles/create')->withInput()->withErrors(['کاربر گرامی ،عنوان تکراری می باشد.']);
         $roles = Role::create(['role_name' => $request->role_name, 'updated_at' => strtotime(date('Y-m-d H:i:s')), 'created_at' => strtotime(date('Y-m-d H:i:s'))]);
 
         if (isset($request->permission_id))
             foreach ($request->permission_id as $key => $value) {
                 Role_Permissions::create(['role_id' => $roles->id, 'permission_id' => $value]);
             }
-        return redirect('/dashboard/user/roles/create')->with('success', 'کاربر گرامی ، اطلاعات با موفقیت ثبت شد.');
+        return redirect('/user/roles/create')->with('success', 'کاربر گرامی ، اطلاعات با موفقیت ثبت شد.');
     }
 
     /**
@@ -131,6 +131,6 @@ class RolesController extends Controller
                 Role_Permissions::create(['role_id' => $id, 'permission_id' => $value]);
 
             }
-        return redirect('/dashboard/user/roles');
+        return redirect('/user/roles');
     }
 }

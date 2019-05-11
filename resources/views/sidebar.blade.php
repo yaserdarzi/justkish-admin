@@ -15,6 +15,20 @@
                 </ul>
             </li>
         @endif
+        @if(in_array("features-manage",$roleInfo) || in_array("group-features-manage",$roleInfo))
+            <li class="has-sub">
+                <a href="#"> <span class="icon-files-o"></span>
+                    <h6> ویژگی ها </h6></a>
+                <ul class="sub-menu">
+                    @if(in_array("group-features-manage",$roleInfo))
+                        <li><a href="{{url('group_features')}}"> مدیریت دسته بندی ویژگی </a></li>
+                    @endif
+                    @if(in_array("features-manage",$roleInfo) )
+                        <li><a href="{{url('features')}}"> مدیریت ویژگی </a></li>
+                    @endif
+                </ul>
+            </li>
+        @endif
         {{--@if(in_array("admin-manage",$roleInfo))--}}
             {{--<li>--}}
                 {{--<a href="{{url('admin')}}"> <span class="icon-user"></span>--}}

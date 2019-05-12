@@ -133,7 +133,7 @@ class FeaturesQuestionsAnswersController extends Controller
             $existsDel = \Storage::disk('upload')->has('/features/' . $features_id . '/answers/' . $data['editValue']->images);
             if ($existsDel != null)
                 @\Storage::disk('upload')->delete('/features/' . $features_id . '/answers/' . $data['editValue']->images);
-            $images = $features_id . time() . md5(pathinfo($request->image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->image->getClientOriginalExtension();
+            $images = md5(\File::get($request->file("image"))) . '.' . $request->file("image")->getClientOriginalExtension();
             \Storage::disk('upload')->makeDirectory('/features/' . $features_id . '/answers/');
             $exists = \Storage::disk('upload')->has('/features/' . $features_id . '/answers/' . $images);
             if ($exists == null)

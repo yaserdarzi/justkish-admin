@@ -60,16 +60,19 @@
 <script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
 @yield('script')
 <script>
-    ClassicEditor
-        .create( document.querySelector( 'textarea' ), {
-            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-        } )
-        .then( editor => {
-            window.editor = editor;
-        } )
-        .catch( err => {
-            console.error( err.stack );
-        } );
+    let allEditors = document.querySelectorAll('textarea');
+    for (var i = 0; i < allEditors.length; ++i) {
+        ClassicEditor
+            .create(document.querySelector("#" + allEditors[i].id), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    }
 </script>
 <script>
     (function (document) {

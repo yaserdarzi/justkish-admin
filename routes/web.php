@@ -38,5 +38,10 @@ Route::group(['middleware' => 'DashboardAuthenticate', 'namespace' => 'Admin'], 
     //Category
     Route::resource('category', 'CategoryController');
 
+    //products Routs
+    Route::resource('products', 'ProductsController');
+    Route::post('products/delete-gallery', 'ProductsController@deleteGallery');
+
+
 
 });

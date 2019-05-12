@@ -12,6 +12,9 @@ class Constants
     const GROUP_FEATURES_DB = 'group_features';
     const FEATURES_DB = 'features';
     const FEATURES_QUESTIONS_ANSWERS_DB = 'features_questions_answers';
+    const PRODUCTS_DB = 'products';
+    const PRODUCTS_GALLERY_DB = 'products_gallery';
+    const PRODUCTS_FEATURES_ANSWERS_DB = 'products_features_answers';
 
 
     //Check Extension

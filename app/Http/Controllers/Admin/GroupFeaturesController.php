@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Features;
 use App\FeaturesQuestionsAnswers;
 use App\GroupFeatures;
@@ -124,7 +125,8 @@ class GroupFeaturesController extends Controller
 
     public function getFeatures(Request $request)
     {
-        $featuresInfo = Features::where("group_features_id", $request->group_features_id)->get();
+        $category = Category::where('id', $request->input('category_id'))->first();
+        $featuresInfo = Features::where("group_features_id", $category->group_features_id)->get();
         $result = "";
         foreach ($featuresInfo as $value) {
             $result .= '<div class="form-title">';

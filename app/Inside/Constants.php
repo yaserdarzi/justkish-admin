@@ -15,7 +15,8 @@ class Constants
     const PRODUCTS_DB = 'products';
     const PRODUCTS_GALLERY_DB = 'products_gallery';
     const PRODUCTS_FEATURES_ANSWERS_DB = 'products_features_answers';
-
+    const SUPPLIER_DB = 'supplier';
+    const PRODUCTS_SUPPLIER_DB = 'products_supplier';
 
     //Check Extension
     const PHOTO_TYPE = ["image/gif", "image/jpeg", "image/jpg", "image/png", "image/PNG", "image/GIF", 'image/*'];

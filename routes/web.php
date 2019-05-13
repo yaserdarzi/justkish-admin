@@ -23,25 +23,27 @@ Route::group(['middleware' => 'DashboardAuthenticate', 'namespace' => 'Admin'], 
     //dashboard
     Route::get('/', 'DashboardController@welCome');
 
-    // User roles
+    //User roles
     Route::resource('user/roles', 'RolesController');
     Route::resource('user/permissions', 'PermissionsController');
 
-    //group features Routs
+    //Group Features
     Route::post('group_features/getFeatures', 'GroupFeaturesController@getFeatures');
     Route::resource('group_features', 'GroupFeaturesController');
 
-    //features Routs
+    //Features
     Route::resource('features/{features_id}/answers', 'FeaturesQuestionsAnswersController');
     Route::resource('features', 'FeaturesController');
 
     //Category
     Route::resource('category', 'CategoryController');
 
-    //products Routs
+    //Products
     Route::resource('products', 'ProductsController');
     Route::post('products/delete-gallery', 'ProductsController@deleteGallery');
 
+    //Products Supplier
+    Route::resource('products/{product_id}/supplier', 'ProductsSupplierController');
 
 
 });
